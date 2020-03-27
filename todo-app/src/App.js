@@ -4,14 +4,15 @@ const App = () => {
   const [name, setName] = useState();
 
   let x;
+  let y;
 
   return (
     <div>
       <form>
         <input
-          type='text'
+          type="text"
           value={name}
-          placeholder='enter a name'
+          placeholder="enter a name"
           onChange={event => {
             setName(event.target.value);
           }}
