@@ -1,0 +1,13 @@
+{
+  "extends": ["wesbos"],
+  "rules": {
+    "no-shadow": [
+      1,
+      {
+        "builtinGlobals": false,
+        "hoist": "all",
+        "allow": []
+      }
+    ]
+  }
+}

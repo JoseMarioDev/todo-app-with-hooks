@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+/* eslint no-shadow: 1 */
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
+// styling
 const Container = styled.div`
   /* outline: 1px solid red; */
   display: flex;
@@ -21,23 +23,50 @@ const Input = styled.input`
   padding: 5px 10px;
   width: 200px;
 `;
+//
 
 const App = () => {
-  const [name, setName] = useState();
+  // hooks
+  const [todo, setTodo] = useState();
+  const [todos, setTodos] = useState([]);
+
+  // functions
+  const handleChanges = useCallback(event => {
+    setTodo(event.target.value);
+  }, []);
+
+  const handleSubmit = useCallback(
+    event => {
+      event.preventDefault();
+      setTodos([
+        ...todos,
+        {
+          id: todos.length + 1,
+          content: todo,
+          isCompleted: false,
+        },
+      ]);
+      setTodo('');
+    },
+    [todo, todos]
+  );
 
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           type="text"
-          value={name}
-          placeholder="enter a name"
-          onChange={event => {
-            setName(event.target.value);
-          }}
+          value={todo}
+          placeholder="enter a todo"
+          onChange={handleChanges}
         ></Input>
+        <button type="submit">Add Todo</button>
       </Form>
-      <H4>my name is: {name}</H4>
+      <ul>
+        {todos.map(todo => (
+          <li>{todo.content}</li>
+        ))}
+      </ul>
     </Container>
   );
 };
