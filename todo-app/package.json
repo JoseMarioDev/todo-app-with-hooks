@@ -62,9 +62,6 @@
     "test": "node scripts/test.js",
     "lint:fix": "eslint . --fix"
   },
-  "eslintConfig": {
-    "extends": "wesbos"
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -62,9 +62,13 @@ const App = () => {
         ></Input>
         <button type="submit">Add Todo</button>
       </Form>
+      <H4>My Todo List</H4>
       <ul>
         {todos.map(todo => (
-          <li>{todo.content}</li>
+          <li key={todo.id}>
+            <input type="checkbox" />
+            {todo.content}
+          </li>
         ))}
       </ul>
     </Container>
